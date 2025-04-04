@@ -16,7 +16,7 @@ class BrowseWidget : public QWidget
     Q_OBJECT
 public:
     explicit BrowseWidget(QWidget *parent = nullptr, const QString string_prompt = "Browse Prompt", const QString dialog_title = "Browse Title",
-                          bool is_file = true, QString file_format = cmlgui::text::label::FILE_FORMAT_IC50_HERG());
+                          bool is_file = true, QString file_format = cmlgui::text::fileformat::FILE_FORMAT_ANY);
     QString get_file_path();
 private:
     bool is_browse_file;

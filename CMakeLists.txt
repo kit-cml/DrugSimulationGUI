@@ -9,21 +9,29 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
-find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
+find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets Pdf)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets PdfWidgets)
 
 set(PROJECT_SOURCES
         browsewidget.cpp
         browsewidget.h
         centralwidget.cpp
         centralwidget.h
+        comboboxdelegate.cpp
+        comboboxdelegate.h
+        filebrowserdelegate.cpp
+        filebrowserdelegate.h
         guiconstants.cpp
         guiconstants.h
         main.cpp
         mainwindow.cpp
         mainwindow.h
-        reportwidget.cpp
-        reportwidget.h
+        parametermodel.cpp
+        parametermodel.h
+        parameterviewer.cpp
+        parameterviewer.h
+        pdfviewer.cpp
+        pdfviewer.h
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
@@ -49,7 +57,7 @@ else()
     endif()
 endif()
 
-target_link_libraries(DrugSimulationGUI PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+target_link_libraries(DrugSimulationGUI PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::PdfWidgets)
 
 set_target_properties(DrugSimulationGUI PROPERTIES
     MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com

@@ -2,7 +2,7 @@
 #define CENTRALWIDGET_H
 
 #include <QComboBox>
-#include <QWidget>
+#include <QEventLoop>
 #include <QHBoxLayout>
 #include <QPlainTextEdit>
 #include <QProcess>
@@ -10,8 +10,8 @@
 #include <QVBoxLayout>
 #include <QWidget>
 
-#include "browsewidget.h"
-#include "reportwidget.h"
+#include "parameterviewer.h"
+#include "pdfviewer.h"
 
 class CentralWidget : public QWidget
 {
@@ -19,37 +19,39 @@ class CentralWidget : public QWidget
 public:
     explicit CentralWidget(QWidget *parent = nullptr);
 private:
-    BrowseWidget        *browse_ic50;
-    BrowseWidget        *browse_herg;
-    QComboBox           *combo_cellmodel;
-    QLabel              *label_cellmodel;
-    QHBoxLayout         *layout_middle_cellmodel;
-    QHBoxLayout         *layout_upper_button;
-    QHBoxLayout         *layout_lower_report;
-    QPlainTextEdit      *edit_inputdeck;
-    QPlainTextEdit      *edit_logging;
-    QProcess            *process_simulator;
+    // parts for parameter table view.
+    // will be put at the middle.
+    ParameterViewer     *viewer_inputdeck;
+    QVBoxLayout         *layout_viewer;
+    void setup_layout_viewer();
+    void load_parameter();
+    // parts for the button and logging.
+    // will be put at the lower part.
+    QTextEdit           *edit_logging;
     QPushButton         *button_execute;
-    QPushButton         *button_generate_report;
-    QString             simulation_directory;
+    QPushButton         *button_report_generate;
+    QPushButton         *button_save_logs;
+    QHBoxLayout         *layout_button;
+    QVBoxLayout         *layout_logging;
+    PdfViewer           *viewer_report_preview;
+    void append_text_color(const QString &text, const QString &color = "white");
+    void setup_layout_logging();
+    // base layout that contains all of the layouts.
     QVBoxLayout         *layout_base;
-    QVBoxLayout         *layout_middle_filebrowser;
-    QVBoxLayout         *layout_middle_input;
-    ReportWidget        *report_generator;
-    void create_parameter_file();
+    // additional components that is not a GUI components.
+    QProcess            *process_console;
+    QEventLoop              *event_console;
     void initialize_process();
-    void populate_parameter();
-    void setup_layout_upper();
-    void setup_layout_middle();
-    void setup_layout_lower();
+    void execute_process(QString program_name, QStringList program_args);
+    QString             simulation_directory;
+
 private slots:
-    void execute_generate_report();
+    void save_logs();
     void execute_simulation();
-    void execute_script();
+    void execute_report_generate();
     void handle_output_message();
     void handle_error_message();
     void handle_process_finished(int exit_code, QProcess::ExitStatus status);
-
 };
 
 #endif // CENTRALWIDGET_H
