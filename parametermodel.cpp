@@ -1,6 +1,7 @@
 #include "parametermodel.h"
 
 #include <QFile>
+#include <QMessageBox>
 
 #include "guiconstants.h"
 
@@ -16,6 +17,7 @@ void ParameterModel::load_from_file(const QString &parameter_file_name)
 {
     QFile param_file(parameter_file_name);
     if (!param_file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        QMessageBox::critical(nullptr, cmlgui::text::window::WINDOW_POPUP_ERROR_TITLE, cmlgui::text::message::ERROR_PARAMETER_FAILED);
         return;
     }
 

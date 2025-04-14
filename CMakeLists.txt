@@ -19,8 +19,6 @@ set(PROJECT_SOURCES
         centralwidget.h
         comboboxdelegate.cpp
         comboboxdelegate.h
-        filebrowserdelegate.cpp
-        filebrowserdelegate.h
         guiconstants.cpp
         guiconstants.h
         main.cpp

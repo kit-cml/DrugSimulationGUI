@@ -31,6 +31,7 @@ namespace cmlgui{
             inline const QString WINDOW_POPUP_ERROR_TITLE = "Error";
             inline const QString WINDOW_POPUP_INFORMATION_TITLE = "Information";
             inline const QString WINDOW_POPUP_WARNING_TITLE = "Warning";
+            inline const QString WINDOW_POPUP_ABOUT_TITLE = "About";
         }
         
         namespace combobox{
@@ -53,19 +54,28 @@ namespace cmlgui{
 
         namespace message{
             inline const QString ERROR_SIMULATION_FAILED = "Simulation failed!";
-            inline const QString ERROR_PARAMETER_FAILED = "The parameter file format is incorrect!";
+            inline const QString ERROR_PARAMETER_FAILED = "The parameter file cannot be opened!";
             inline const QString ERROR_NO_PARAMETER = "The parameter file is empty. Make sure to load the parameter first!";
             inline const QString ERROR_CANNOT_SAVE_LOG = "This log cannot be saved! Contact the administrator!";
             inline const QString WARNNG_NO_IC50_HERG_FILE_PATH = "Make sure to provide the file path of both IC50 and hERG parameter data!!!";
             inline const QString WARNING_NO_PARAMETER_FILE = "Please provide parameter file!";
             inline const QString INFO_SIMULATION_FINISHED = "Simulation successfully finished!";
+            inline const QString ABOUT_MESSAGE= "DrugSimulation v0.0.0\nCreated by MetaHeart Inc.\nKi Moo Lim\nMarcellinus Aroli";
+        }
+
+        namespace menu{
+            inline const QString MENU_FILE = "File";
+            inline const QString MENU_HELP = "Help";
+            inline const QString MENU_ACTION_ABOUT = "About";
+            inline const QString MENU_ACTION_EXIT = "Exit";
+
         }
         
     }
 
     namespace directory{
         // change this directory according to your console simulation located.
-        inline const QString DEFAULT_SIMULATION_ROOT = "/home/iga/Documents/Code/Github/DrugSimulation/bin/simulation_dirs";
+        inline const QString DEFAULT_SIMULATION_ROOT = "/home/marcell/Documents/Code/C/DrugSimulation/bin/simulation_dirs";
         inline const QString ORD_CVODE_DIRECTORY = "drugsim_ord_cvode";
         inline const QString ORDSTATIC_CVODE_DIRECTORY = "drugsim_ordstatic_cvode";
         inline const QString TOMEK_CVODE_DIRECTORY = "drugsim_tomek_cvode";
