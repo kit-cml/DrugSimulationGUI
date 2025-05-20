@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'centralwidget.h'
 **
-** Created by: The Qt Meta Object Compiler version 68 (Qt 6.8.2)
+** Created by: The Qt Meta Object Compiler version 69 (Qt 6.9.0)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
@@ -18,8 +18,8 @@
 #include <QtCore/qxptype_traits.h>
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'centralwidget.h' doesn't include <QObject>."
-#elif Q_MOC_OUTPUT_REVISION != 68
-#error "This file was generated using the moc from 6.8.2. It"
+#elif Q_MOC_OUTPUT_REVISION != 69
+#error "This file was generated using the moc from 6.9.0. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
@@ -35,81 +35,53 @@ namespace {
 struct qt_meta_tag_ZN13CentralWidgetE_t {};
 } // unnamed namespace
 
+template <> constexpr inline auto CentralWidget::qt_create_metaobjectdata<qt_meta_tag_ZN13CentralWidgetE_t>()
+{
+    namespace QMC = QtMocConstants;
+    QtMocHelpers::StringRefStorage qt_stringData {
+        "CentralWidget",
+        "save_logs",
+        "",
+        "execute_simulation",
+        "execute_report_generate",
+        "handle_output_message",
+        "handle_error_message",
+        "handle_process_finished",
+        "exit_code",
+        "QProcess::ExitStatus",
+        "status"
+    };
 
-#ifdef QT_MOC_HAS_STRINGDATA
-static constexpr auto qt_meta_stringdata_ZN13CentralWidgetE = QtMocHelpers::stringData(
-    "CentralWidget",
-    "save_logs",
-    "",
-    "execute_simulation",
-    "execute_report_generate",
-    "handle_output_message",
-    "handle_error_message",
-    "handle_process_finished",
-    "exit_code",
-    "QProcess::ExitStatus",
-    "status"
-);
-#else  // !QT_MOC_HAS_STRINGDATA
-#error "qtmochelpers.h not found or too old."
-#endif // !QT_MOC_HAS_STRINGDATA
-
-Q_CONSTINIT static const uint qt_meta_data_ZN13CentralWidgetE[] = {
-
- // content:
-      12,       // revision
-       0,       // classname
-       0,    0, // classinfo
-       6,   14, // methods
-       0,    0, // properties
-       0,    0, // enums/sets
-       0,    0, // constructors
-       0,       // flags
-       0,       // signalCount
-
- // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,   50,    2, 0x08,    1 /* Private */,
-       3,    0,   51,    2, 0x08,    2 /* Private */,
-       4,    0,   52,    2, 0x08,    3 /* Private */,
-       5,    0,   53,    2, 0x08,    4 /* Private */,
-       6,    0,   54,    2, 0x08,    5 /* Private */,
-       7,    2,   55,    2, 0x08,    6 /* Private */,
-
- // slots: parameters
-    QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void, QMetaType::Int, 0x80000000 | 9,    8,   10,
-
-       0        // eod
-};
-
+    QtMocHelpers::UintData qt_methods {
+        // Slot 'save_logs'
+        QtMocHelpers::SlotData<void()>(1, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'execute_simulation'
+        QtMocHelpers::SlotData<void()>(3, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'execute_report_generate'
+        QtMocHelpers::SlotData<void()>(4, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'handle_output_message'
+        QtMocHelpers::SlotData<void()>(5, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'handle_error_message'
+        QtMocHelpers::SlotData<void()>(6, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'handle_process_finished'
+        QtMocHelpers::SlotData<void(int, QProcess::ExitStatus)>(7, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::Int, 8 }, { 0x80000000 | 9, 10 },
+        }}),
+    };
+    QtMocHelpers::UintData qt_properties {
+    };
+    QtMocHelpers::UintData qt_enums {
+    };
+    return QtMocHelpers::metaObjectData<CentralWidget, qt_meta_tag_ZN13CentralWidgetE_t>(QMC::MetaObjectFlag{}, qt_stringData,
+            qt_methods, qt_properties, qt_enums);
+}
 Q_CONSTINIT const QMetaObject CentralWidget::staticMetaObject = { {
     QMetaObject::SuperData::link<QWidget::staticMetaObject>(),
-    qt_meta_stringdata_ZN13CentralWidgetE.offsetsAndSizes,
-    qt_meta_data_ZN13CentralWidgetE,
+    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN13CentralWidgetE_t>.stringdata,
+    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN13CentralWidgetE_t>.data,
     qt_static_metacall,
     nullptr,
-    qt_incomplete_metaTypeArray<qt_meta_tag_ZN13CentralWidgetE_t,
-        // Q_OBJECT / Q_GADGET
-        QtPrivate::TypeAndForceComplete<CentralWidget, std::true_type>,
-        // method 'save_logs'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'execute_simulation'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'execute_report_generate'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'handle_output_message'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'handle_error_message'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'handle_process_finished'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        QtPrivate::TypeAndForceComplete<int, std::false_type>,
-        QtPrivate::TypeAndForceComplete<QProcess::ExitStatus, std::false_type>
-    >,
+    qt_staticMetaObjectRelocatingContent<qt_meta_tag_ZN13CentralWidgetE_t>.metaTypes,
     nullptr
 } };
 
@@ -137,7 +109,7 @@ const QMetaObject *CentralWidget::metaObject() const
 void *CentralWidget::qt_metacast(const char *_clname)
 {
     if (!_clname) return nullptr;
-    if (!strcmp(_clname, qt_meta_stringdata_ZN13CentralWidgetE.stringdata0))
+    if (!strcmp(_clname, qt_staticMetaObjectStaticContent<qt_meta_tag_ZN13CentralWidgetE_t>.strings))
         return static_cast<void*>(this);
     return QWidget::qt_metacast(_clname);
 }

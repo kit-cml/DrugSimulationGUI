@@ -1,0 +1,47 @@
+/* Fusion Dark Theme */
+QWidget {
+    background-color: #353535;
+    color: #FFFFFF;
+    selection-background-color: #3d7848;
+    selection-color: #ffffff;
+}
+
+QLineEdit, QTextEdit, QPlainTextEdit, QSpinBox, QDoubleSpinBox {
+    background-color: #454545;
+    border: 1px solid #666;
+    border-radius: 4px;
+    padding: 4px;
+}
+
+QPushButton {
+    background-color: #5a5a5a;
+    border: 1px solid #666;
+    padding: 6px;
+    border-radius: 4px;
+}
+
+QPushButton:hover {
+    background-color: #6c6c6c;
+}
+
+QPushButton:pressed {
+    background-color: #4c4c4c;
+}
+
+QComboBox, QMenuBar, QMenu, QToolButton {
+    background-color: #454545;
+    border: 1px solid #666;
+}
+
+QComboBox:hover, QMenu:hover, QToolButton:hover {
+    background-color: #5a5a5a;
+}
+
+QScrollBar:vertical, QScrollBar:horizontal {
+    background-color: #2d2d2d;
+}
+
+QScrollBar::handle:vertical, QScrollBar::handle:horizontal {
+    background-color: #5a5a5a;
+    border-radius: 4px;
+}

@@ -31,9 +31,6 @@ private:
 
 private slots:
     void browse_file();
-
-
-
 };
 
 #endif // BROWSEWIDGET_H

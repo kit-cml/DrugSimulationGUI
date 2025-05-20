@@ -3,10 +3,14 @@
 
 #include <QComboBox>
 #include <QEventLoop>
+#include <QFormLayout>
 #include <QHBoxLayout>
+#include <QLabel>
 #include <QPlainTextEdit>
 #include <QProcess>
 #include <QPushButton>
+#include <QRadioButton>
+#include <QSpinBox>
 #include <QVBoxLayout>
 #include <QWidget>
 
@@ -25,6 +29,16 @@ private:
     QVBoxLayout         *layout_viewer;
     void setup_layout_viewer();
     void load_parameter();
+    // parts for the selection between CPU and GPU simulation.
+    QFormLayout         *layout_cpu_gpu_selection;
+    QLabel              *label_cpu_gpu_mode;
+    QHBoxLayout         *layout_radio;
+    QHBoxLayout         *layout_processor;
+    QRadioButton        *radio_cpu;
+    QRadioButton        *radio_gpu;
+    QLabel              *label_processor_size;
+    QSpinBox            *spinbox_processor_size;
+    void setup_cpu_gpu_selection();
     // parts for the button and logging.
     // will be put at the lower part.
     QTextEdit           *edit_logging;
@@ -34,7 +48,7 @@ private:
     QHBoxLayout         *layout_button;
     QVBoxLayout         *layout_logging;
     PdfViewer           *viewer_report_preview;
-    void append_text_color(const QString &text, const QString &color = "white");
+    void append_text_color(const QString &text, const QString &color);
     void setup_layout_logging();
     // base layout that contains all of the layouts.
     QVBoxLayout         *layout_base;

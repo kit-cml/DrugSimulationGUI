@@ -11,6 +11,10 @@ namespace cmlgui{
     namespace text{
         namespace label{
             inline const QString LABEL_PARAMETER_PROMPT_TEXT = "Assign the parameter file";
+            inline const QString LABEL_CPU_GPU_SELECTION = "Please select the simulation processor type";
+            inline const QString LABEL_RADIO_CPU = "CPU";
+            inline const QString LABEL_RADIO_GPU = "GPU";
+            inline const QString LABEL_PROCESSOR_SIZE = "Processor size";
         }
 
         namespace button{
@@ -60,28 +64,34 @@ namespace cmlgui{
             inline const QString WARNNG_NO_IC50_HERG_FILE_PATH = "Make sure to provide the file path of both IC50 and hERG parameter data!!!";
             inline const QString WARNING_NO_PARAMETER_FILE = "Please provide parameter file!";
             inline const QString INFO_SIMULATION_FINISHED = "Simulation successfully finished!";
-            inline const QString ABOUT_MESSAGE= "DrugSimulation v0.0.0\nCreated by MetaHeart Inc.\nKi Moo Lim\nMarcellinus Aroli";
+            inline const QString ABOUT_MESSAGE= "DrugSimulation v0.0.0\nCreated by MetaHeart Inc.";
         }
 
         namespace menu{
             inline const QString MENU_FILE = "File";
+            inline const QString MENU_ACTION_EXIT = "Exit";
             inline const QString MENU_HELP = "Help";
             inline const QString MENU_ACTION_ABOUT = "About";
-            inline const QString MENU_ACTION_EXIT = "Exit";
-
+            inline const QString MENU_EDIT = "Edit";
+            inline const QString MENU_CHANGE_THEME = "Set Theme";
+            inline const QString MENU_ACTION_THEME_DEFAULT = "Default";
+            inline const QString MENU_ACTION_THEME_FUSION_DARK = "Fusion_Dark";
+            inline const QString MENU_ACTION_THEME_FUSION_LIGHT = "Fusion_Light";
+            inline const QString MENU_ACTION_THEME_NORD = "Nord";
         }
         
     }
 
     namespace directory{
         // change this directory according to your console simulation located.
-        inline const QString DEFAULT_SIMULATION_ROOT = "/home/marcell/Documents/Code/C/DrugSimulation/bin/simulation_dirs";
+        inline const QString DEFAULT_SIMULATION_ROOT = QDir::currentPath()+"/DrugSimulation/bin/simulation_dirs";
         inline const QString ORD_CVODE_DIRECTORY = "drugsim_ord_cvode";
         inline const QString ORDSTATIC_CVODE_DIRECTORY = "drugsim_ordstatic_cvode";
         inline const QString TOMEK_CVODE_DIRECTORY = "drugsim_tomek_cvode";
         inline const QString ORD_EULER_DIRECTORY = "drugsim_ord_euler";
         inline const QString ORDSTATIC_EULER_DIRECTORY = "drugsim_ordstatic_euler";
         inline const QString TOMEK_EULER_DIRECTORY = "drugsim_tomek_euler";
+        inline const QString QSS_THEME_DIRECTORY = QDir::currentPath()+"/themes";
     }
 
     namespace file{
@@ -99,7 +109,7 @@ namespace cmlgui{
         inline constexpr int WINDOW_MAIN_HEIGHT =   1024;
         inline constexpr int WINDOW_MAIN_WIDTH  =   768;
         inline constexpr int WINDOW_PDF_HEIGHT =   740;
-        inline constexpr int WINDOW_PDF_WIDTH  =   600;
+        inline constexpr int WINDOW_PDF_WIDTH  =   740;
     }
 }
 #endif // GUICONSTANTS_H

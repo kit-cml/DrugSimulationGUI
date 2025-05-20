@@ -9,6 +9,7 @@
 #include <QFileInfo>
 #include <QMessageBox>
 #include <QOverload>
+#include <QThread>
 
 CentralWidget::CentralWidget(QWidget *parent)
     : QWidget{parent}
@@ -21,7 +22,9 @@ CentralWidget::CentralWidget(QWidget *parent)
 
     setup_layout_viewer();
     setup_layout_logging();
+    setup_cpu_gpu_selection();
     layout_base->addLayout(layout_viewer);
+    layout_base->addLayout(layout_cpu_gpu_selection);
     layout_base->addLayout(layout_logging);
 }
 
@@ -39,6 +42,33 @@ void CentralWidget::load_parameter()
     simulation_directory = cmlgui::directory::ORD_CVODE_DIRECTORY;
     QString param_file_name = cmlgui::directory::DEFAULT_SIMULATION_ROOT+"/"+simulation_directory+"/"+cmlgui::file::OUTPUT_PARAM_FILE;
     viewer_inputdeck->load_parameter(param_file_name);
+}
+
+void CentralWidget::setup_cpu_gpu_selection()
+{
+    layout_cpu_gpu_selection = new QFormLayout();
+    label_cpu_gpu_mode = new QLabel(cmlgui::text::label::LABEL_CPU_GPU_SELECTION);
+    label_processor_size = new QLabel(cmlgui::text::label::LABEL_PROCESSOR_SIZE);
+
+    layout_radio = new QHBoxLayout();
+    radio_cpu = new QRadioButton(cmlgui::text::label::LABEL_RADIO_CPU);
+    radio_gpu = new QRadioButton(cmlgui::text::label::LABEL_RADIO_GPU);
+    //QSpacerItem to make the right components always at the right size whenever the window size is changing.
+    layout_radio->addItem(new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Minimum));
+    layout_radio->addWidget(radio_cpu);
+    layout_radio->addWidget(radio_gpu);
+    radio_cpu->setChecked(true);
+
+    layout_processor = new QHBoxLayout();
+    spinbox_processor_size = new QSpinBox();
+    spinbox_processor_size->setMaximum(QThread::idealThreadCount());
+    spinbox_processor_size->setMinimum(1);
+    spinbox_processor_size->setValue(spinbox_processor_size->maximum());
+    layout_processor->addItem(new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Minimum));
+    layout_processor->addWidget(spinbox_processor_size);
+
+    layout_cpu_gpu_selection->addRow(label_cpu_gpu_mode, layout_radio);
+    layout_cpu_gpu_selection->addRow(label_processor_size, layout_processor);
 }
 
 void CentralWidget::append_text_color(const QString &text, const QString &color)
@@ -85,8 +115,6 @@ void CentralWidget::initialize_process()
     connect(process_console, &QProcess::readyReadStandardOutput, this, &CentralWidget::handle_output_message);
     connect(process_console, &QProcess::readyReadStandardError, this, &CentralWidget::handle_error_message);
     connect(process_console, &QProcess::finished, this, &CentralWidget::handle_process_finished);
-
-
 }
 
 
@@ -128,7 +156,12 @@ void CentralWidget::execute_simulation()
     //QString script_file(cmlgui::directory::DEFAULT_SIMULATION_ROOT+"/"+simulation_directory+"/"+cmlgui::file::EXECUTABLE_SCRIPT_DUMMY_FILE);
     QStringList program_args;
     program_args << script_file;
+    program_args << spinbox_processor_size->text();
     execute_process(cmlgui::program::PROGRAM_BASH,program_args);
+    // this line is just a temporary measure.
+    // the proper one should use QDesktopServices::openUrl();
+    QProcess::startDetached("pcmanfm-qt", QStringList() << cmlgui::directory::DEFAULT_SIMULATION_ROOT+"/"+simulation_directory+"/results");
+    //QDesktopServices::openUrl(QUrl::fromLocalFile(cmlgui::directory::DEFAULT_SIMULATION_ROOT+"/"+simulation_directory+"/results"));
 }
 
 void CentralWidget::execute_process(QString program_name, QStringList program_args)
@@ -158,7 +191,7 @@ void CentralWidget::execute_report_generate()
     // the format of the result_directory always ends with '/' character.
     // Otherwise, the report generating script will got some problems.
     // Need something to do to revise it. (TODO)
-    QString result_directory = "result/"+drug_name+"/";
+    QString result_directory = "results/"+drug_name+"/";
     QString report_latex_file = "report_drug_" + drug_name + "_" + cell_name + "_" + user_name + ".tex";
     QString report_pdf_file = "report_drug_" + drug_name + "_" + cell_name + "_" + user_name + ".pdf";
 
@@ -168,6 +201,11 @@ void CentralWidget::execute_report_generate()
     qDebug() << program_args;
     execute_process(cmlgui::program::PROGRAM_BASH,program_args);
 
+    // this line is just a temporary measure.
+    // the proper one should use QDesktopServices::openUrl();
+    QProcess::startDetached("pcmanfm-qt", QStringList() << cmlgui::directory::DEFAULT_SIMULATION_ROOT);
+    //QDesktopServices::openUrl(QUrl::fromLocalFile(cmlgui::directory::DEFAULT_SIMULATION_ROOT+"/results"));
+    //QDesktopServices::openUrl(QUrl::fromLocalFile(cmlgui::directory::DEFAULT_SIMULATION_ROOT+"/figs"));
     viewer_report_preview->load_pdf(cmlgui::directory::DEFAULT_SIMULATION_ROOT+"/"+simulation_directory+"/"+report_pdf_file);
     viewer_report_preview->exec();
 
@@ -176,7 +214,8 @@ void CentralWidget::execute_report_generate()
 void CentralWidget::handle_output_message()
 {
     QByteArray output = process_console->readAllStandardOutput();
-    append_text_color(QString(output));
+    QColor current_text_color = qApp->palette().color(QPalette::Text);
+    edit_logging->append(QString(output));
 }
 
 void CentralWidget::handle_error_message()
