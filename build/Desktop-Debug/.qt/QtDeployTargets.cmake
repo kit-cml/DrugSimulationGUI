@@ -1,0 +1,2 @@
+set(__QT_DEPLOY_TARGET_DrugSimulationGUI_FILE /home/marcell/Documents/Code/Qt/DrugSimulationGUI/build/Desktop-Debug/DrugSimulationGUI)
+set(__QT_DEPLOY_TARGET_DrugSimulationGUI_TYPE EXECUTABLE)
